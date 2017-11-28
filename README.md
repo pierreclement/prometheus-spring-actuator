@@ -1,3 +1,5 @@
+# Example Spring Boot Actuator app with Prometheus on Kubernetes
+
 inspired by
 
 - https://reflectoring.io/monitoring-spring-boot-with-prometheus/
@@ -118,4 +120,26 @@ By default, the application will run with `dev` Spring profile
 To run the application with a specific Spring profile, set the desired one in the `.env` file:
 ```
 SPRING_PROFILES_ACTIVE=dev
+```
+
+## Running the application via Kubernetes
+
+```
+$ kubectl apply -f ./k8s
+```
+
+## Making Prometheus In Kubernetes Automatically pick up endpoint
+
+Add the proper annotations to your deployment to inform prometheus what and where to scrape:
+
+```
+spec:
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template: # create pods using pod definition in this template
+    metadata:
+      labels:
+        run: prometheus-spring-actuator
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8888"
 ```

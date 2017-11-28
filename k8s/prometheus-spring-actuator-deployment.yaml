@@ -1,0 +1,38 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: prometheus-spring-actuator
+spec:
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template: # create pods using pod definition in this template
+    metadata:
+      labels:
+        run: prometheus-spring-actuator
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+    spec:
+      containers:
+      - name: prometheus-spring-actuator
+        image: stevenacoffman/prometheus-spring-actuator:0.0.1-SNAPSHOT
+        ports:
+        - containerPort: 8080
+        # resources:
+        #   limits:
+        #     cpu: 0.2
+        #     memory: "10Mi"
+        # livenessProbe:
+        #   httpGet:
+        #     path: /health
+        #     port: 8080
+        #     scheme: HTTP
+        #   initialDelaySeconds: 5
+        #   periodSeconds: 15
+        #   timeoutSeconds: 5
+        # readinessProbe:
+        #   httpGet:
+        #     path: /readiness
+        #     port: 8080
+        #     scheme: HTTP
+        #   initialDelaySeconds: 5
+        #   timeoutSeconds: 1
