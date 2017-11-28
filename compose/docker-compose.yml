@@ -1,0 +1,15 @@
+version: '3'
+services:
+  spring-boot-app:
+    build:
+      context: ../
+    image: ${IMAGE_NAME}
+    ports:
+     - "${HOST_SERVER_PORT}:${SERVER_PORT}"
+     - "${HOST_DEBUG_PORT}:${DEBUG_PORT}"
+     - "${HOST_JMX_PORT}:${JMX_PORT}"
+    environment:
+     - "SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}"
+     - "DEBUG=${DEBUG}"
+     - "DEBUG_PORT=${DEBUG_PORT}"
+     - "JAVA_OPTS=${JAVA_OPTS}"
