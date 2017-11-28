@@ -60,7 +60,7 @@ package` and push it with `mvn deploy`.  Of course you can also say
     - Using the provided `docker-compose.yml` in this repository:
 
 ```
-docker-compose up -f compose/docker-compose.yml
+docker-compose -f compose/docker-compose.yml up
 ```
 
 ### Inject environment variables:
@@ -100,7 +100,7 @@ HOST_JMX_PORT=9010
 To run the application in debug mode, simply set the `DEBUG` variable to true in the `.env` file.
 
 Launch the application:
-`docker-compose up -f compose/docker-compose.yml`
+`docker-compose -f compose/docker-compose.yml up`
 
 By default, the debug port used is the `8000`.
 
@@ -108,7 +108,7 @@ By default, the debug port used is the `8000`.
 To run the application in JMX mode, simply set the `JMX` variable to true in the `.env` file.
 
 Launch the application:
-`docker-compose up -f compose/docker-compose.yml`
+`docker-compose -f compose/docker-compose.yml up`
 
 By default, the debug port used is the `9010`.
 

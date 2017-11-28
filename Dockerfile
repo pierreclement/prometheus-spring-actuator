@@ -2,12 +2,15 @@ FROM openjdk:8-jre-alpine
 
 RUN apk add --no-cache tini
 
+ARG JAR_FILE
+ENV JAR_FILE spring-boot.jar
+
 ENV SERVER_PORT=8080
 ENV DEBUG_PORT=8000
+ENV JMX_PORT=9010
 ENV APP_HOME /app
 ENV SPRING_BOOT_USER spring-boot
 ENV SPRING_BOOT_GROUP spring-boot
-ENV JAR_FILE spring-boot.jar
 
 WORKDIR $APP_HOME
 COPY assets/entrypoint.sh $APP_HOME/entrypoint.sh
