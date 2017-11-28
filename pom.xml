@@ -130,12 +130,8 @@
                         <configuration>
                             <!-- Docker image repository not maven repository-->
                             <repository>stevenacoffman/prometheus-spring-actuator</repository>
-<<<<<<< HEAD
                             <!-- Choose latest or ${project.version} tag -->
                             <tag>latest</tag>
-=======
-                            <tag>${project.version}</tag>
->>>>>>> afa590d834524bc4097cc89fc33bc196f7bb64bc
                             <buildArgs>
                                 <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
                             </buildArgs>
