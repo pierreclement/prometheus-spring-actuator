@@ -1,7 +1,10 @@
 package org.ithaka.prometheus.demo;
 
 import com.codahale.metrics.MetricRegistry;
+import io.prometheus.client.CollectorRegistry;
 import io.prometheus.client.dropwizard.DropwizardExports;
+import io.prometheus.client.hotspot.MemoryPoolsExports;
+import io.prometheus.client.hotspot.StandardExports;
 import io.prometheus.client.spring.boot.EnablePrometheusEndpoint;
 import io.prometheus.client.spring.boot.EnableSpringBootMetricsCollector;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +19,6 @@ import javax.annotation.PostConstruct;
 
 @Component
 @Configuration
-//@ConditionalOnClass(CollectorRegistry.class)
 @EnablePrometheusEndpoint
 @EnableSpringBootMetricsCollector
 public class PrometheusConfiguration extends WebMvcConfigurerAdapter implements SchedulingConfigurer {
@@ -33,33 +35,13 @@ public class PrometheusConfiguration extends WebMvcConfigurerAdapter implements 
 
     @PostConstruct
     public void registerPrometheusCollectors() {
-//        CollectorRegistry.defaultRegistry.clear();
-//        new StandardExports().register();
-//        new MemoryPoolsExports().register();
+        CollectorRegistry.defaultRegistry.clear();
+        new StandardExports().register();
+        new MemoryPoolsExports().register();
         new DropwizardExports(dropWizardMetricRegistry).register();
     }
 
     @Override
     public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
     }
-
-//    @Bean
-//    @ConditionalOnMissingBean
-//    public CollectorRegistry metricRegistry() {
-//        return CollectorRegistry.defaultRegistry;
-//    }
-//
-//    @Bean
-//    public ServletRegistrationBean registerPrometheusExporterServlet(CollectorRegistry metricRegistry) {
-//        return new ServletRegistrationBean(new MetricsServlet(metricRegistry), "/prometheus");
-//    }
-//
-//    @Bean
-//    ExporterRegister exporterRegister() {
-//        List<Collector> collectors = new ArrayList<>();
-//        collectors.add(new StandardExports());
-//        collectors.add(new MemoryPoolsExports());
-//        ExporterRegister register = new ExporterRegister(collectors);
-//        return register;
-//    }
 }

@@ -16,6 +16,6 @@ public class HomeController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody
     public void home(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.sendRedirect("/prometheus");
+        response.sendRedirect("/metrics");
     }
 }

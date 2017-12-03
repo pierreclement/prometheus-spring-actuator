@@ -9,20 +9,19 @@ inspired by
 - https://github.com/f-lopes/spring-boot-docker
 - https://github.com/spotify/dockerfile-maven
 
-does not work well with Spring Boot 2.x (e.g. 2.0.0.M6)
+Do note that this does not seem to work well with Spring Boot 2.x (e.g. 2.0.0.M6)
 
-brew install grafana
+If you wish to run Grafana and Prometheus (https://prometheus.io/docs/visualization/grafana/) locally, you'll need to install them.
+
+To run Grafana locally, use:
 
 grafana-server --config=/usr/local/etc/grafana/grafana.ini --homepath /usr/local/share/grafana cfg:default.paths.logs=/usr/local/var/log/grafana cfg:default.paths.data=/usr/local/var/lib/grafana cfg:default.paths.plugins=/usr/local/var/lib/grafana/plugins
 
-https://prometheus.io/docs/visualization/grafana/
+And then visit http://0.0.0.0:3000/login with admin / admin
 
-visit http://0.0.0.0:3000/login with admin / admin
+Once this application is running, visit http://localhost:8080/health
 
-visit http://localhost:8080/prometheus
-
-
-custom metrics
+Custom metrics we're interested in having in the near future
 - gc
 - other JMX stats?
 - error rate
